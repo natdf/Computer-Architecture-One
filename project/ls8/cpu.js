@@ -1,6 +1,36 @@
+/* eslint-disable */
 /**
  * LS-8 v2.0 emulator skeleton code
  */
+
+const LDI = ​​​​​0b10011001​​​​​;
+const PRN = ​​​​​0b01000011;
+const HLT = 0b00000001;
+const ADD = 0b10110011;
+const CALL = 0b01001000;
+const CMP = 0b10100000;
+const DEC = 0b01111001;
+const DIV = 0b10101011;
+const INC = 0b01111000;
+const INT = 0b01001010;
+const IRET = 0b00001011;
+const JEQ = 0b01010001;
+const JGT = 0b01010100;
+const JLT = 0b01010011;
+const JMP = 0b01010000;
+const JNE = 0b01010010;
+const LD = 0b10011000;
+const MOD = 0b10101100;
+const MUL = 0b10101010;
+const NOP = 0b00000000;
+const OR = 0b01110000;
+const POP = 0b01001100;
+const PRA = 0b01000010;
+const PUSH = 0b01001101;
+const RET = 0b00001001;
+const ST = 0b10011010;
+const SUB = 0b10101001;
+const XOR = 0b10110010;
 
 /**
  * Class for simulating a simple Computer (CPU & memory)
@@ -53,8 +83,52 @@ class CPU {
      */
     alu(op, regA, regB) {
       switch (op) {
-        case 'MUL':
+        case ADD:
+        // !!! IMPLEMENT ME
+        regA = regA + regB;
+        console.log(regA);
+        break;
+      }
+      switch (op) {
+        case SUB:
+        // !!! IMPLEMENT ME
+        regA = regA - regB;
+        console.log(regA);
+        break;
+      }
+      switch (op) {
+        case MUL:
           // !!! IMPLEMENT ME
+          regA = regA * regB;
+          console.log(regA);
+          break;
+      }
+      switch (op) {
+        case DIV:
+          // !!! IMPLEMENT ME
+          regA = regA / regB;
+          console.log(regA);
+          break;
+      }
+      switch (op) {
+        case INC:
+          // !!! IMPLEMENT ME
+          regA += 1;
+          console.log(regA);
+          break;
+      }
+      switch (op) {
+        case DEC:
+          // !!! IMPLEMENT ME
+          regA -= 1;
+          console.log(regA);
+          break;
+      }
+      switch (op) {
+        case CMP:
+          // !!! IMPLEMENT ME
+          regA === regB;
+          console.log(regA);
           break;
       }
     }
@@ -86,22 +160,24 @@ class CPU {
   
       // !!! IMPLEMENT ME
       switch (IR) {
-        case 153:
+        case LDI:
           this.reg[operandA] = operandB;
           break;
-        case 67:
+        case PRN:
           console.log(this.reg[operandA]);
           break;
-        case 1:
+        case HLT:
           this.stopClock();
           break;
+        case MUL:
+          alu(MUL, this.reg[operandA], this.reg[operandB]);
       }
   
       // Increment the PC register to go to the next instruction. Instructions
       // can be 1, 2, or 3 bytes long. Hint: the high 2 bits of the
       // instruction byte tells you how many bytes follow the instruction byte
       // for any particular instruction.
-  
+
       // !!! IMPLEMENT ME
       let toIncrement = IR >>> 6;
       toIncrement = parseInt(toIncrement, 10);
