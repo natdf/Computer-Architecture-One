@@ -1,10 +1,11 @@
-/* eslint-disable */
+
 /**
  * LS-8 v2.0 emulator skeleton code
  */
 
-const LDI = ​​​​​0b10011001​​​​​;
-const PRN = ​​​​​0b01000011;
+// const LDI = 0b10011001​​​​​; <-- G R E M L I N S 
+const LDI = 0b10011001;
+const PRN = 0b01000011;
 const HLT = 0b00000001;
 const ADD = 0b10110011;
 const CALL = 0b01001000;
@@ -84,51 +85,37 @@ class CPU {
     alu(op, regA, regB) {
       switch (op) {
         case ADD:
-        // !!! IMPLEMENT ME
         regA = regA + regB;
-        console.log(regA);
         break;
       }
       switch (op) {
         case SUB:
-        // !!! IMPLEMENT ME
         regA = regA - regB;
-        console.log(regA);
         break;
       }
       switch (op) {
         case MUL:
-          // !!! IMPLEMENT ME
           regA = regA * regB;
-          console.log(regA);
           break;
       }
       switch (op) {
         case DIV:
-          // !!! IMPLEMENT ME
           regA = regA / regB;
-          console.log(regA);
           break;
       }
       switch (op) {
         case INC:
-          // !!! IMPLEMENT ME
           regA += 1;
-          console.log(regA);
           break;
       }
       switch (op) {
         case DEC:
-          // !!! IMPLEMENT ME
           regA -= 1;
-          console.log(regA);
           break;
       }
       switch (op) {
         case CMP:
-          // !!! IMPLEMENT ME
           regA === regB;
-          console.log(regA);
           break;
       }
     }
@@ -160,7 +147,7 @@ class CPU {
   
       // !!! IMPLEMENT ME
       switch (IR) {
-        case LDI:
+        case 0b10011001:
           this.reg[operandA] = operandB;
           break;
         case PRN:
@@ -169,8 +156,9 @@ class CPU {
         case HLT:
           this.stopClock();
           break;
-        case MUL:
-          alu(MUL, this.reg[operandA], this.reg[operandB]);
+        // case "MUL":
+        //   alu(MUL, this.reg[operandA], this.reg[operandB]);
+        //   break;
       }
   
       // Increment the PC register to go to the next instruction. Instructions
