@@ -4,7 +4,7 @@
  */
 
 const LDI = 0b10011001;
-const PRN = ​​​​​0b01000011;
+const PRN = 0b01000011;
 const HLT = 0b00000001;
 const ADD = 0b10110011;
 const CALL = 0b01001000;
@@ -91,25 +91,25 @@ class CPU {
     valB = this.reg[regB];
 
     switch (op) {
-      case "ADD":
+      case ADD:
         this.reg[regA] = valA + valB;
         break;
-      case "SUB":
+      case SUB:
         this.reg[regA] = valA - valB;
         break;
-      case "MUL":
+      case MUL:
         this.reg[regA] = valA * valB;
         break;
-      case "DIV":
+      case DIV:
         this.reg[regA] = valA / valB;
         break;
-      case "INC":
+      case INC:
         this.reg[regA] = valA + 1;
         break;
-      case "DEC":
+      case DEC:
         this.reg[regA] = valA - 1;
         break;
-      case "CMP":
+      case CMP:
         valA === valB;
         break;
     }
@@ -125,10 +125,10 @@ class CPU {
     // right now.)
 
     // !!! IMPLEMENT ME
-    let IR = this.ram.read(this.reg.PC); //.toString(2);
+    let IR = this.ram.read(this.reg.PC);
 
     // Debugging output
-    //console.log(`${this.reg.PC}: ${IR.toString(2)}`);
+    console.log(`${this.reg.PC}: ${IR.toString(2)}`);
 
     // Get the two bytes in memory _after_ the PC in case the instruction
     // needs them.
@@ -152,25 +152,25 @@ class CPU {
         this.stopClock();
         break;
       case ADD:
-        this.alu("ADD", this.reg[operandA], this.reg[operandB]);
+        this.alu(ADD, this.reg[operandA], this.reg[operandB]);
         break;
       case SUB:
-        this.alu("SUB", this.reg[operandA], this.reg[operandB]);
+        this.alu(SUB, this.reg[operandA], this.reg[operandB]);
         break;
       case MUL:
-        this.alu("MUL", this.reg[operandA], this.reg[operandB]);
+        this.alu(MUL, operandA, operandB);
         break;
       case DIV:
-        this.alu("DIV", this.reg[operandA], this.reg[operandB]);
+        this.alu(DIV, this.reg[operandA], this.reg[operandB]);
         break;
       case INC:
-        this.alu("INC", this.reg[operandA], this.reg[operandB]);
+        this.alu(INC, this.reg[operandA], this.reg[operandB]);
         break;
       case DEC:
-        this.alu("DEC", this.reg[operandA], this.reg[operandB]);
+        this.alu(DEC, this.reg[operandA], this.reg[operandB]);
         break;
       case CMP:
-        this.alu("CMP", this.reg[operandA], this.reg[operandB]);
+        this.alu(CMP, this.reg[operandA], this.reg[operandB]);
         break;
     }
 
