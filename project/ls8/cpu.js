@@ -3,7 +3,7 @@
  * LS-8 v2.0 emulator skeleton code
  */
 
-const LDI = 0b10011001​​​​​;
+const LDI = 0b10011001;
 const PRN = ​​​​​0b01000011;
 const HLT = 0b00000001;
 const ADD = 0b10110011;
@@ -91,25 +91,25 @@ class CPU {
     valB = this.reg[regB];
 
     switch (op) {
-      case ADD:
+      case "ADD":
         this.reg[regA] = valA + valB;
         break;
-      case SUB:
+      case "SUB":
         this.reg[regA] = valA - valB;
         break;
-      case MUL:
+      case "MUL":
         this.reg[regA] = valA * valB;
         break;
-      case DIV:
+      case "DIV":
         this.reg[regA] = valA / valB;
         break;
-      case INC:
+      case "INC":
         this.reg[regA] = valA + 1;
         break;
-      case DEC:
+      case "DEC":
         this.reg[regA] = valA - 1;
         break;
-      case CMP:
+      case "CMP":
         valA === valB;
         break;
     }
@@ -142,35 +142,35 @@ class CPU {
 
     // !!! IMPLEMENT ME
     switch (IR) {
-      case "LDI":
+      case LDI:
         this.reg[operandA] = operandB;
         break;
-      case "PRN":
+      case PRN:
         console.log(this.reg[operandA]);
         break;
-      case "HLT":
+      case HLT:
         this.stopClock();
         break;
-      case "ADD":
-        alu(MUL, this.reg[operandA], this.reg[operandB]);
+      case ADD:
+        this.alu("ADD", this.reg[operandA], this.reg[operandB]);
         break;
-      case "SUB":
-        alu(SUB, this.reg[operandA], this.reg[operandB]);
+      case SUB:
+        this.alu("SUB", this.reg[operandA], this.reg[operandB]);
         break;
-      case "MUL":
-        alu(MUL, this.reg[operandA], this.reg[operandB]);
+      case MUL:
+        this.alu("MUL", this.reg[operandA], this.reg[operandB]);
         break;
-      case "DIV":
-        alu(DIV, this.reg[operandA], this.reg[operandB]);
+      case DIV:
+        this.alu("DIV", this.reg[operandA], this.reg[operandB]);
         break;
-      case "INC":
-        alu(INC, this.reg[operandA], this.reg[operandB]);
+      case INC:
+        this.alu("INC", this.reg[operandA], this.reg[operandB]);
         break;
-      case "DEC":
-        alu(DEC, this.reg[operandA], this.reg[operandB]);
+      case DEC:
+        this.alu("DEC", this.reg[operandA], this.reg[operandB]);
         break;
-      case "CMP":
-        alu(CMP, this.reg[operandA], this.reg[operandB]);
+      case CMP:
+        this.alu("CMP", this.reg[operandA], this.reg[operandB]);
         break;
     }
 
