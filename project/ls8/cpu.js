@@ -32,6 +32,8 @@ const ST = 0b10011010;
 const SUB = 0b10101001;
 const XOR = 0b10110010;
 
+const SP = 7;
+
 /**
  * Class for simulating a simple Computer (CPU & memory)
  */
@@ -171,6 +173,14 @@ class CPU {
         break;
       case CMP:
         this.alu(CMP, this.reg[operandA], this.reg[operandB]);
+        break;
+      case PUSH:
+        this.reg[SP]--;
+        this.ram.write(this.reg[SP], this.reg[operandA]);
+        break;
+      case POP:
+        this.reg[operandA] = this.ram.read(this.reg[SP]);
+        this.reg[SP]++;
         break;
     }
 
