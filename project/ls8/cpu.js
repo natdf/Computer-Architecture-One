@@ -130,7 +130,7 @@ class CPU {
     let IR = this.ram.read(this.reg.PC);
 
     // Debugging output
-    // console.log(`${this.reg.PC}: ${IR.toString(2)}`);
+    console.log(`${this.reg.PC}: ${IR.toString(2)}`);
 
     // Get the two bytes in memory _after_ the PC in case the instruction
     // needs them.
@@ -180,6 +180,15 @@ class CPU {
         break;
       case POP:
         this.reg[operandA] = this.ram.read(this.reg[SP]);
+        this.reg[SP]++;
+        break;
+      case CALL:
+        this.reg[SP]--;
+        this.ram.write(this.reg[SP], this.reg[this.reg.PC + 2]);
+        this.reg.PC = this.reg[operandA];
+        break;
+      case RET:
+        this.reg.PC = this.ram.read(this.reg.PC + 2);
         this.reg[SP]++;
         break;
     }
